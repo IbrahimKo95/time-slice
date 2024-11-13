@@ -1,12 +1,12 @@
-import {BookIcon, CheckIcon, CirclePlus, EllipsisVertical, SearchIcon} from "lucide-react";
+import {CirclePlus, EllipsisVertical, SearchIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import TaskCard from "@/app/components/TaskCard";
 
 export default function Home() {
   return (
-      <div className="flex justify-center items-center w-full h-full">
-          <div className="grid grid-cols-4 w-3/4 h-3/4 gap-x-7">
-              <div className="col-span-2 w-full bg-secondary h-full/4 rounded-3xl flex justify-between flex-col">
+      <div className="flex justify-center items-center w-full h-screen">
+          <div className="grid grid-cols-4 w-3/4 max-h-[75vh] gap-x-7">
+              <div className="col-span-2 w-full bg-secondary max-h-[75vh] rounded-3xl flex justify-between flex-col">
                   <div className="flex justify-between p-5">
                       <h2 className="font-semibold">Tasks List</h2>
                       <div className="flex">
@@ -14,11 +14,18 @@ export default function Home() {
                           <Button variant="ghost" className=""><EllipsisVertical size={25}/></Button>
                       </div>
                   </div>
-                  <div className="overflow-y-scroll h-full px-5 flex-1 gap-y-5">
+                  <div className="overflow-y-scroll px-5 flex-1">
                       <TaskCard/>
                       <TaskCard/>
                       <TaskCard/>
                       <TaskCard/>
+                      <TaskCard/>
+                      <TaskCard/>
+                      <TaskCard/>
+                      <TaskCard/>
+                      <TaskCard/>
+                      <TaskCard/>
+
                   </div>
                   <div className="">
                       <Button className="w-full rounded-t-none py-5"><CirclePlus size={30}/> Add Task</Button>
