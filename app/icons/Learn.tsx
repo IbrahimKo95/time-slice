@@ -25,11 +25,11 @@ export default function Learn(props: { size?: number }) {
                     d="M159.666 87.3329H121.666C105.869 87.3329 93 74.4644 93 58.6665C93 42.8685 105.869 30 121.666 30H159.666C143.869 30 131 42.8685 131 58.6665C131 74.4644 143.869 87.3329 159.666 87.3329Z"
                     fill="#EBE6EF"/>
             </g>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M337.459 87.3329H121.666C105.869 87.3329 93 74.4644 93 58.6665C93 42.8685 105.869 30 121.666 30H334.459C336.116 30 337.459 31.3431 337.459 33V87.3329ZM337.459 40H121.666C111.391 40 103 48.3914 103 58.6665C103 68.9416 111.391 77.3329 121.666 77.3329H337.459V40Z"
                   fill="#4BB3FD"/>
             <g opacity="0.5">
-                <path fill-rule="evenodd" clip-rule="evenodd"
+                <path fillRule="evenodd" clipRule="evenodd"
                       d="M337.459 87.3329H121.666C105.869 87.3329 93 74.4644 93 58.6665C93 42.8685 105.869 30 121.666 30H334.459C336.116 30 337.459 31.3431 337.459 33V87.3329ZM337.459 40H121.666C111.391 40 103 48.3914 103 58.6665C103 68.9416 111.391 77.3329 121.666 77.3329H337.459V40Z"
                       fill="#4BB3FD"/>
             </g>
@@ -38,13 +38,13 @@ export default function Learn(props: { size?: number }) {
                     d="M333.934 62.1665H337.434V55.1665H333.934V62.1665ZM154.611 55.1665C152.678 55.1665 151.111 56.7335 151.111 58.6665C151.111 60.5995 152.678 62.1665 154.611 62.1665V55.1665ZM333.934 55.1665H154.611V62.1665H333.934V55.1665Z"
                     fill="#EBE6EF"/>
             </g>
-            <path d="M285 270H145M259.136 305H170.864" stroke="#3A3347" stroke-width="7" stroke-miterlimit="10"
-                  stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M285 270H145M259.136 305H170.864" stroke="#3A3347" strokeWidth="7" strokeMiterlimit="10"
+                  strokeLinecap="round" strokeLinejoin="round"/>
             <path
                 d="M145 143C145 141.343 146.343 140 148 140H282C283.657 140 285 141.343 285 143V187C285 188.657 283.657 190 282 190H148C146.343 190 145 188.657 145 187V143Z"
                 fill="#F9C9C0"/>
             <g opacity="0.5">
-                <path fill-rule="evenodd" clip-rule="evenodd"
+                <path fillRule="evenodd" clipRule="evenodd"
                       d="M277 148H153V182H277V148ZM148 140C146.343 140 145 141.343 145 143V187C145 188.657 146.343 190 148 190H282C283.657 190 285 188.657 285 187V143C285 141.343 283.657 140 282 140H148Z"
                       fill="#F9C9C0"/>
             </g>

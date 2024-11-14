@@ -36,11 +36,11 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-y-2">
                     <label className="font-semibold text-sm">Email</label>
-                    <Input required={true} value={email} onChange={(e) => setEmail(e.target.value)} type="email"/>
+                    <Input className="h-10" required={true} value={email} onChange={(e) => setEmail(e.target.value)} type="email"/>
                 </div>
                 <div className="flex flex-col gap-y-2">
                     <label className="font-semibold text-sm">Password</label>
-                    <Input required={true} value={password} onChange={(e) => setPassword(e.target.value)} type="password"/>
+                    <Input className="h-10" required={true} value={password} onChange={(e) => setPassword(e.target.value)} type="password"/>
                 </div>
                 <Button onClick={handleSubmit} type="submit">Login</Button>
                 <p className="text-sm">Dont have an account ? <a className="text-primary" href="/register">Sign Up</a></p>

@@ -4,7 +4,7 @@ export default function Work(props: { size?: number }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width={props.size} height={props.size} viewBox="0 0 430 430" fill="none">
             <path d="M290 105V75C290 63.9543 281.046 55 270 55H160C148.954 55 140 63.9543 140 75V105" stroke="#3A3347"
-                  stroke-width="7" stroke-miterlimit="15.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  strokeWidth="7" strokeMiterlimit="15.6" strokeLinecap="round" strokeLinejoin="round"/>
             <path
                 d="M390 335C390 351.568 376.569 365 360 365H70C53.4315 365 40 351.569 40 335V135C40 118.431 53.4315 105 70 105H360C376.569 105 390 118.431 390 135V335Z"
                 fill="#B26836"/>

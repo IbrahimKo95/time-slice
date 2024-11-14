@@ -13,14 +13,13 @@ import {
 import { Button } from "@/components/ui/button";
 import {CircleAlert, CirclePlus, Minus, Plus, ShoppingBagIcon} from "lucide-react";
 import {Textarea} from "@/components/ui/textarea";
-import {addTask} from "@/lib/taskStorage";
 import Learn from "@/app/icons/Learn";
 import Work from "@/app/icons/Work";
 import Play from "@/app/icons/Play";
 import Food from "@/app/icons/Food";
 import Sport from "@/app/icons/Sport";
 
-export default function NewTaskMenu() {
+export default function NewTaskMenu({refreshData}: {refreshData: () => void}) {
     const [isMounted, setIsMounted] = useState(false);
     const [totalSessions, setTotalSessions] = useState(1);
     const [title, setTitle] = useState("")
@@ -39,7 +38,7 @@ export default function NewTaskMenu() {
 
     if (!isMounted) return null;
 
-    function createTask() {
+    async function createTask() {
         if(title == "") {
             setError(true)
             return
@@ -52,13 +51,30 @@ export default function NewTaskMenu() {
             sessionsDone: 0,
             isCompleted: false
         }
-        addTask(task)
-        setIsOpen(false)
+        try {
+            const response = await fetch('/api/task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(task),
+                credentials: 'include'
+            });
+            console.log(await response.json())
+            if(response.ok) {
+                setIsOpen(false)
+                refreshData()
+            } else {
+                console.log(response)
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger className="w-full">
+            <DialogTrigger asChild className="w-full">
                 <Button className="w-full rounded-t-none rounded-b-3xl h-full py-5 bg-secondary-foreground/20">
                     <CirclePlus size={30}/> Add Task
                 </Button>

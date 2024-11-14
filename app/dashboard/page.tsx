@@ -10,16 +10,26 @@ import NewTaskMenu from "@/app/components/NewTaskMenu";
 export default function Dashboard() {
     const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [newTaskMenu, setNewTaskMenu] = useState(false)
     useEffect(() => {
         const date = new Date();
         setDate(date.toDateString() +  ' - ' + date.toLocaleTimeString());
     }, []);
 
-    useEffect(() => {
-        async function fetchData() {
-
+    async function fetchData() {
+        try {
+            const response = await fetch('/api/task/today', {
+                method: 'GET',
+            });
+            if(response.ok) {
+                const data = await response.json();
+                setTasks(data.data)
+            }
+        } catch (e) {
+            console.error(e)
         }
+    }
+
+    useEffect(() => {
         fetchData()
     }, []);
 
@@ -29,7 +39,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-4 w-3/4 max-h-[75vh] gap-x-7">
                 <div className="col-span-2 w-full bg-secondary max-h-[75vh] min-h-[75vh] rounded-3xl flex justify-between flex-col">
                     <div className="flex justify-between py-5 px-7">
-                        <h2 className="font-semibold text-lg">Tasks List <span className="font-normal text-sm ml-1">(10 Tasks)</span></h2>
+                        <h2 className="font-semibold text-lg">Tasks List <span className="font-normal text-sm ml-1">{tasks.length > 0 ? "(" + tasks.length + " Tasks)" : ""}</span></h2>
                         <div className="flex">
                             <Button variant="ghost" className=""><SearchIcon size={25}/></Button>
                             <Button variant="ghost" className=""><EllipsisVertical size={25}/></Button>
@@ -43,7 +53,7 @@ export default function Dashboard() {
                         )}
                     </div>
                     <div className="">
-                        <NewTaskMenu/>
+                        <NewTaskMenu refreshData={fetchData}/>
                     </div>
                 </div>
                 <div className="col-span-2 w-full h-full rounded-xl grid grid-rows-3 gap-y-7">

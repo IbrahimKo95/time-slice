@@ -8,7 +8,7 @@ export default function Sport(props: { size?: number }) {
                 fill="#B26836"/>
             <path
                 d="M131.94 210.49H298.06M151.06 188.83V236.4M181.76 188.83V236.4M212.47 188.83V236.4M243.17 188.83V236.4M273.88 188.83V236.4"
-                stroke="#EBE6EF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="#EBE6EF" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
             <path
                 d="M327.5 135.49V294.49C329.87 292.93 332.25 291.3 334.5 289.67C341.977 284.329 349.092 278.499 355.8 272.22C358.19 269.98 360.44 267.78 362.7 265.42V164.55C360.44 162.18 358.21 160.03 355.82 157.78C349.115 151.491 341.999 145.655 334.52 140.31C332.27 138.67 329.87 137 327.5 135.49Z"
                 fill="#EBE6EF"/>

@@ -7,7 +7,7 @@ import {SignJWT} from "jose";
 export async function POST(req: Request) {
     const { email, password } = await req.json();
     if (!email || !password) {
-        return NextResponse.json({ status: 400, error: "Please fill all fields" });
+        return NextResponse.json({error: "Please fill all fields" }, {status: 400});
     }
 
     const user = await prisma.user.findUnique({
@@ -17,12 +17,12 @@ export async function POST(req: Request) {
     });
 
     if (!user) {
-        return NextResponse.json({ status: 400, error: "User not found" });
+        return NextResponse.json({error: "User not found" }, {status: 400});
     }
 
     const passwordVerify = await bcrypt.compare(password, user.password);
     if (!passwordVerify) {
-        return NextResponse.json({ status: 400, error: "Wrong credentials" });
+        return NextResponse.json({error: "Wrong credentials" }, {status: 400});
     }
 
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
         .setExpirationTime("2d")
         .sign(secret);
 
-    const res = NextResponse.json({ status: 201, message: "Login Successful" });
+    const res = NextResponse.json({message: "Login Successful" }, {status: 201});
     res.cookies.set("authToken", userToken, {
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 2,
