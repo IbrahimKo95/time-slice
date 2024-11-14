@@ -11,16 +11,23 @@ import {
     DialogFooter, DialogClose
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import {CirclePlus, Minus, Plus, ShoppingBagIcon} from "lucide-react";
+import {CircleAlert, CirclePlus, Minus, Plus, ShoppingBagIcon} from "lucide-react";
 import {Textarea} from "@/components/ui/textarea";
 import {addTask} from "@/lib/taskStorage";
+import Learn from "@/app/icons/Learn";
+import Work from "@/app/icons/Work";
+import Play from "@/app/icons/Play";
+import Food from "@/app/icons/Food";
+import Sport from "@/app/icons/Sport";
 
 export default function NewTaskMenu() {
     const [isMounted, setIsMounted] = useState(false);
     const [totalSessions, setTotalSessions] = useState(1);
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [type, setType] = useState("")
+    const [type, setType] = useState("Work")
+    const [error, setError] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     function changeSessionNumber(number: number) {
         setTotalSessions(number);
@@ -33,7 +40,10 @@ export default function NewTaskMenu() {
     if (!isMounted) return null;
 
     function createTask() {
-        console.log(title, description, totalSessions, type)
+        if(title == "") {
+            setError(true)
+            return
+        }
         const task = {
             title: title,
             description: description,
@@ -43,10 +53,11 @@ export default function NewTaskMenu() {
             isCompleted: false
         }
         addTask(task)
+        setIsOpen(false)
     }
 
     return (
-        <Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="w-full">
                 <Button className="w-full rounded-t-none rounded-b-3xl h-full py-5 bg-secondary-foreground/20">
                     <CirclePlus size={30}/> Add Task
@@ -56,39 +67,40 @@ export default function NewTaskMenu() {
                 <DialogHeader>
                     <DialogTitle className="w-full">
                         <input onChange={(e) => setTitle(e.target.value)} className="bg-transparent border-none focus:border-none outline-none w-full " autoFocus={true} placeholder="Write here the title of your task"/>
+                        {error && <p className="text-xs text-destructive mt-3 flex items-center gap-x-1"><CircleAlert size={15}/>Title cannot be empty</p>}
                     </DialogTitle>
                     <DialogDescription>
-                        <div className="mt-7">
+                        <div className="mt-5">
                             <h2 className="mb-3 text-sm">Select Category</h2>
                             <div className="flex gap-4">
                                 <label htmlFor="work"
                                        className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
-                                    <input onClick={() => setType("Work")} type="radio" id="work" name="category" className="hidden peer"/>
-                                    <ShoppingBagIcon/>
+                                    <input defaultChecked={true} onClick={() => setType("Work")} type="radio" id="work" name="category" className="hidden peer"/>
+                                    <Work/>
                                     <span className="peer-checked:text-white">Work</span>
                                 </label>
                                 <label htmlFor="play"
                                        className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
                                     <input onClick={() => setType("Play")} type="radio" id="play" name="category" className="hidden peer"/>
-                                    <ShoppingBagIcon/>
+                                    <Play/>
                                     <span className="peer-checked:text-white">Play</span>
                                 </label>
                                 <label htmlFor="food"
                                        className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
                                     <input onClick={() => setType("Food")} type="radio" id="food" name="category" className="hidden peer"/>
-                                    <ShoppingBagIcon/>
+                                    <Food/>
                                     <span className="peer-checked:text-white">Food</span>
                                 </label>
                                 <label htmlFor="learn"
                                        className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
                                     <input onClick={() => setType("Learn")} type="radio" id="learn" name="category" className="hidden peer"/>
-                                    <ShoppingBagIcon/>
+                                    <Learn/>
                                     <span className="peer-checked:text-white">Learn</span>
                                 </label>
                                 <label htmlFor="sport"
                                        className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
                                     <input onClick={() => setType("Sport")} type="radio" id="sport" name="category" className="hidden peer"/>
-                                    <ShoppingBagIcon/>
+                                    <Sport/>
                                     <span className="peer-checked:text-white">Sport</span>
                                 </label>
                                 <label htmlFor="others"

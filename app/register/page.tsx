@@ -13,7 +13,7 @@ export default function Home() {
             return
         }
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('/api/auth/register', {
                 method: 'POST',
                 body: JSON.stringify({ email, password })
             });
@@ -32,7 +32,7 @@ export default function Home() {
         <div className="h-screen flex flex-col items-center justify-center">
             <form className="flex flex-col bg-secondary px-5 py-7 rounded-lg max-w-lg w-full gap-y-5">
                 <div className="flex justify-center">
-                    <h1 className="text-3xl font-bold mb-3">Login</h1>
+                    <h1 className="text-3xl font-bold mb-3">Register</h1>
                 </div>
                 <div className="flex flex-col gap-y-2">
                     <label className="font-semibold text-sm">Email</label>
@@ -42,8 +42,8 @@ export default function Home() {
                     <label className="font-semibold text-sm">Password</label>
                     <Input required={true} value={password} onChange={(e) => setPassword(e.target.value)} type="password"/>
                 </div>
-                <Button onClick={handleSubmit} type="submit">Login</Button>
-                <p className="text-sm">Dont have an account ? <a className="text-primary" href="/register">Sign Up</a></p>
+                <Button onClick={handleSubmit} type="submit">Register</Button>
+                <p className="text-sm">You already have an account ? <a className="text-primary" href="/">Login</a></p>
             </form>
         </div>
 
