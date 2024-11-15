@@ -9,10 +9,12 @@ import Play from "@/app/icons/Play";
 
 export default function TaskCard(task: Task) {
     return (
-        <div className="flex items-center gap-x-3 py-3 hover:bg-secondary-foreground/20">
+        <div className="flex items-center gap-x-3 py-3 hover:bg-secondary-foreground/20 group">
             <div className="pl-7 pr-2">
-                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                    <CheckIcon size={15}/>
+                <div className={`w-5 h-5 ${task.isCompleted ? "bg-green-500" : "bg-secondary-foreground/20 group-hover:border-2 group-hover:border-green-500"} rounded-full flex items-center justify-center`}>
+                    {task.isCompleted && (
+                        <CheckIcon size={15}/>
+                    )}
                 </div>
             </div>
             <div>

@@ -1,15 +1,18 @@
 "use client"
-import {EllipsisVertical, SearchIcon} from "lucide-react";
+import {Coffee, EllipsisVertical, SearchIcon, TimerIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import TaskCard from "@/app/components/TaskCard";
 import {Badge} from "@/components/ui/badge";
 import {useEffect, useState} from "react";
 import {Task} from "@/types/TaskTypes";
 import NewTaskMenu from "@/app/components/NewTaskMenu";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import Timer from "@/app/components/Timer";
 
 export default function Dashboard() {
     const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [mode, setMode] = useState("ongoing")
     useEffect(() => {
         const date = new Date();
         setDate(date.toDateString() +  ' - ' + date.toLocaleTimeString());
@@ -35,7 +38,6 @@ export default function Dashboard() {
 
     return (
         <div className="flex justify-center items-center w-full h-screen">
-
             <div className="grid grid-cols-4 w-3/4 max-h-[75vh] gap-x-7">
                 <div className="col-span-2 w-full bg-secondary max-h-[75vh] min-h-[75vh] rounded-3xl flex justify-between flex-col">
                     <div className="flex justify-between py-5 px-7">
@@ -72,10 +74,28 @@ export default function Dashboard() {
                             <div className="">
                             </div>
                         </div>
-
                     </div>
                     <div className="bg-secondary h-full rounded-3xl row-span-2 p-5">
-                        <h2 className="font-semibold text-lg">Timer</h2>
+                        <Tabs value={mode} onValueChange={(value) => setMode(value)} className="w-full">
+                            <TabsList className="w-full justify-between rounded-l-full rounded-r-full h-14 gap-x-10">
+                                <TabsTrigger disabled={mode !== "ongoing"} className="w-full h-full rounded-l-full rounded-r-full flex items-center gap-x-1" value="ongoing"><TimerIcon size={20}/> Ongoing</TabsTrigger>
+                                <TabsTrigger disabled={mode !== "break"} className="w-full h-full rounded-l-full rounded-r-full flex items-center gap-x-1" value="break">Break <Coffee size={20}/></TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="ongoing">
+                                <div className="mt-10">
+                                    {mode === "ongoing" && (
+                                        <Timer expiryTimestamp={new Date(Date.now() + 10 * 1000)} setMode={() => setMode("break")}/>
+                                    )}
+                                </div>
+                            </TabsContent>
+                            <TabsContent value="break">
+                                <div className="mt-10">
+                                    {mode === "break" && (
+                                        <Timer expiryTimestamp={new Date(Date.now() + 15 * 1000)} setMode={() => setMode("ongoing")}/>
+                                    )}
+                                </div>
+                            </TabsContent>
+                        </Tabs>
                     </div>
                 </div>
             </div>

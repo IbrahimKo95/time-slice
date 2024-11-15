@@ -90,37 +90,37 @@ export default function NewTaskMenu({refreshData}: {refreshData: () => void}) {
                             <h2 className="mb-3 text-sm">Select Category</h2>
                             <div className="flex gap-4">
                                 <label htmlFor="work"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Work" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input defaultChecked={true} onClick={() => setType("Work")} type="radio" id="work" name="category" className="hidden peer"/>
                                     <Work/>
                                     <span className="peer-checked:text-white">Work</span>
                                 </label>
                                 <label htmlFor="play"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Play" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input onClick={() => setType("Play")} type="radio" id="play" name="category" className="hidden peer"/>
                                     <Play/>
                                     <span className="peer-checked:text-white">Play</span>
                                 </label>
                                 <label htmlFor="food"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Food" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input onClick={() => setType("Food")} type="radio" id="food" name="category" className="hidden peer"/>
                                     <Food/>
                                     <span className="peer-checked:text-white">Food</span>
                                 </label>
                                 <label htmlFor="learn"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Learn" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input onClick={() => setType("Learn")} type="radio" id="learn" name="category" className="hidden peer"/>
                                     <Learn/>
                                     <span className="peer-checked:text-white">Learn</span>
                                 </label>
                                 <label htmlFor="sport"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Sport" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input onClick={() => setType("Sport")} type="radio" id="sport" name="category" className="hidden peer"/>
                                     <Sport/>
                                     <span className="peer-checked:text-white">Sport</span>
                                 </label>
                                 <label htmlFor="others"
-                                       className="border-[1px] peer-checked:border-green-500 py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2">
+                                       className={`border-[1px] ${type === "Others" && "border-green-500"} py-2 px-4 rounded-lg cursor-pointer flex flex-col items-center w-16 gap-y-2`}>
                                     <input onClick={() => setType("Others")} type="radio" id="others" name="category" className="hidden peer"/>
                                     <ShoppingBagIcon/>
                                     <span className="peer-checked:text-white">Others</span>
