@@ -54,3 +54,34 @@ export async function GET(req: NextRequest) {
     }
 
 }
+
+export async function PUT(req: NextRequest) {
+    try {
+        const token = req.cookies.get("authToken")?.value;
+        if (!token) {
+            return NextResponse.json({ status: 401, error: "Unauthorized" });
+        }
+        console.log("here")
+        const { id, title, description, type, totalSessions, sessionsDone, isCompleted } = await req.json();
+        if (!id || !title || !description || !type || !totalSessions || sessionsDone === undefined || isCompleted === undefined) {
+            return NextResponse.json({ status: 400, error: "Please fill all fields" });
+        }
+        const task = await prisma.task.update({
+            where: {
+                id
+            },
+            data: {
+                title,
+                description,
+                type,
+                totalSessions,
+                sessionsDone,
+                isCompleted
+            }
+        });
+        return NextResponse.json({ status: 200, data: task });
+    } catch (err) {
+        console.log(err)
+        return NextResponse.json({ status: 500, error: "Internal Server Error" });
+    }
+}

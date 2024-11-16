@@ -8,11 +8,11 @@ import {Task} from "@/types/TaskTypes";
 import NewTaskMenu from "@/app/components/NewTaskMenu";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Timer from "@/app/components/Timer";
-
 export default function Dashboard() {
     const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
     const [mode, setMode] = useState("ongoing")
+    const [activeTask, setActiveTask] = useState<Task>();
     useEffect(() => {
         const date = new Date();
         setDate(date.toDateString() +  ' - ' + date.toLocaleTimeString());
@@ -32,9 +32,44 @@ export default function Dashboard() {
         }
     }
 
+    async function timerFinished() {
+        const notif = new Audio("/audio/notificationSong.wav");
+        notif.volume = 0.5;
+        await notif.play();
+        if(mode === "ongoing") {
+            if(activeTask) {
+                let updatedTask;
+                if(activeTask.sessionsDone + 1 === activeTask.totalSessions) {
+                    updatedTask = {...activeTask, isCompleted: true, sessionsDone: activeTask.sessionsDone + 1}
+                } else {
+                    updatedTask = {...activeTask, sessionsDone: activeTask.sessionsDone + 1}
+                }
+                const response = await fetch('/api/task', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedTask)
+                });
+                if(response.ok) {
+                    fetchData()
+                }
+            }
+            setMode("break")
+        } else if (mode === "break") {
+            setMode("ongoing")
+        }
+    }
+
     useEffect(() => {
         fetchData()
     }, []);
+
+    useEffect(() => {
+        if (tasks.length > 0) {
+            setActiveTask(tasks.filter(task => !task.isCompleted)[0])
+        }
+    }, [tasks]);
 
     return (
         <div className="flex justify-center items-center w-full h-screen">
@@ -84,14 +119,14 @@ export default function Dashboard() {
                             <TabsContent value="ongoing">
                                 <div className="mt-10">
                                     {mode === "ongoing" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 10 * 1000)} setMode={() => setMode("break")}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 10 * 1000)} setMode={() => timerFinished()}/>
                                     )}
                                 </div>
                             </TabsContent>
                             <TabsContent value="break">
                                 <div className="mt-10">
                                     {mode === "break" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 15 * 1000)} setMode={() => setMode("ongoing")}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 15 * 1000)} setMode={() => timerFinished()}/>
                                     )}
                                 </div>
                             </TabsContent>
