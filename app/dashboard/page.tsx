@@ -8,6 +8,7 @@ import {Task} from "@/types/TaskTypes";
 import NewTaskMenu from "@/app/components/NewTaskMenu";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Timer from "@/app/components/Timer";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 export default function Dashboard() {
     const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -93,21 +94,32 @@ export default function Dashboard() {
                         <NewTaskMenu refreshData={fetchData}/>
                     </div>
                 </div>
-                <div className="col-span-2 w-full h-full rounded-xl grid grid-rows-3 gap-y-7">
+                <div className="col-span-2 w-full max-h-[75vh] min-h-[75vh] rounded-xl grid grid-rows-3 gap-y-7">
                     <div className="bg-secondary h-full rounded-3xl row-span-1 p-5">
-                        <h2 className="font-semibold text-lg">Daily Progress</h2>
-                        <div className="flex items-center justify-between h-full">
-                            <div className="flex flex-col gap-y-3">
-                                <div className="flex gap-x-3">
-                                    <Badge className="rounded-full">3/10</Badge>
-                                    <p className="text-sm">Tasks was done today</p>
-                                </div>
-                                <div>
-                                    <p>{date}</p>
-                                </div>
-                            </div>
-                            <div className="">
-                            </div>
+                        <h2 className="font-semibold text-lg">Progress</h2>
+                        <div className="flex items-center justify-center h-full">
+                            <Carousel className="w-full max-w-xs flex gap-x-5">
+                                <CarouselContent>
+                                    <CarouselItem>
+                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
+                                        <p className="text-sm">Tasks was done today</p>
+                                    </CarouselItem>
+                                    <CarouselItem>
+                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
+                                        <p className="text-sm">Tasks was done this week</p>
+                                    </CarouselItem>
+                                    <CarouselItem>
+                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
+                                        <p className="text-sm">Tasks was done this month</p>
+                                    </CarouselItem>
+                                    <CarouselItem>
+                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
+                                        <p className="text-sm">Tasks was done this year</p>
+                                    </CarouselItem>
+                                </CarouselContent>
+                                <CarouselPrevious />
+                                <CarouselNext />
+                            </Carousel>
                         </div>
                     </div>
                     <div className="bg-secondary h-full rounded-3xl row-span-2 p-5">
@@ -119,14 +131,14 @@ export default function Dashboard() {
                             <TabsContent value="ongoing">
                                 <div className="mt-10">
                                     {mode === "ongoing" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 10 * 1000)} setMode={() => timerFinished()}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 5 * 1000)} setMode={() => timerFinished()} activeTask={activeTask} index={tasks.indexOf(activeTask as Task)+1}/>
                                     )}
                                 </div>
                             </TabsContent>
                             <TabsContent value="break">
                                 <div className="mt-10">
                                     {mode === "break" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 15 * 1000)} setMode={() => timerFinished()}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 5 * 1000)} setMode={() => timerFinished()} activeTask={undefined} index={tasks.indexOf(activeTask as Task)}/>
                                     )}
                                 </div>
                             </TabsContent>

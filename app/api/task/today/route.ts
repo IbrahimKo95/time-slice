@@ -17,6 +17,9 @@ export async function GET(req: NextRequest) {
                     gte: new Date(new Date().setHours(0, 0, 0, 0)),
                     lt: new Date(new Date().setHours(23, 59, 59, 999))
                 }
+            },
+            orderBy: {
+                createdAt: 'asc'
             }
         });
         return NextResponse.json({data: tasks }, {status: 200});
