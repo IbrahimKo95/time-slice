@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
                 sessionsDone,
                 isCompleted,
                 userId
-            }
+            },
         });
         return NextResponse.json({data: task }, {status: 201});
     } catch (err) {
@@ -45,6 +45,9 @@ export async function GET(req: NextRequest) {
         const tasks = await prisma.task.findMany({
             where: {
                 userId
+            },
+            orderBy: {
+                createdAt: 'asc'
             }
         });
         return NextResponse.json({ status: 200, data: tasks });

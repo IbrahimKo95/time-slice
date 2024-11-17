@@ -9,6 +9,9 @@ import NewTaskMenu from "@/app/components/NewTaskMenu";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Timer from "@/app/components/Timer";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import {Card, CardContent} from "@/components/ui/card";
+import CarouselTask from "@/app/components/CarouselTask";
+import CarouselHour from "@/app/components/CarouselHour";
 export default function Dashboard() {
     const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -96,30 +99,9 @@ export default function Dashboard() {
                 </div>
                 <div className="col-span-2 w-full max-h-[75vh] min-h-[75vh] rounded-xl grid grid-rows-3 gap-y-7">
                     <div className="bg-secondary h-full rounded-3xl row-span-1 p-5">
-                        <h2 className="font-semibold text-lg">Progress</h2>
-                        <div className="flex items-center justify-center h-full">
-                            <Carousel className="w-full max-w-xs flex gap-x-5">
-                                <CarouselContent>
-                                    <CarouselItem>
-                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
-                                        <p className="text-sm">Tasks was done today</p>
-                                    </CarouselItem>
-                                    <CarouselItem>
-                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
-                                        <p className="text-sm">Tasks was done this week</p>
-                                    </CarouselItem>
-                                    <CarouselItem>
-                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
-                                        <p className="text-sm">Tasks was done this month</p>
-                                    </CarouselItem>
-                                    <CarouselItem>
-                                        <Badge className="rounded-full">{tasks.filter(task => task.isCompleted).length}/{tasks.length}</Badge>
-                                        <p className="text-sm">Tasks was done this year</p>
-                                    </CarouselItem>
-                                </CarouselContent>
-                                <CarouselPrevious />
-                                <CarouselNext />
-                            </Carousel>
+                        <div className="flex items-center justify-between h-full">
+                            <CarouselHour/>
+                            <CarouselTask/>
                         </div>
                     </div>
                     <div className="bg-secondary h-full rounded-3xl row-span-2 p-5">

@@ -8,4 +8,5 @@ export interface Task {
     totalSessions: number;
     sessionsDone: number;
     isCompleted: boolean;
+    createdAt: Date;
 };
