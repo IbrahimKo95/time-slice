@@ -2,25 +2,17 @@
 import {Coffee, EllipsisVertical, SearchIcon, TimerIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import TaskCard from "@/app/components/TaskCard";
-import {Badge} from "@/components/ui/badge";
 import {useEffect, useState} from "react";
 import {Task} from "@/types/TaskTypes";
 import NewTaskMenu from "@/app/components/NewTaskMenu";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import Timer from "@/app/components/Timer";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
-import {Card, CardContent} from "@/components/ui/card";
 import CarouselTask from "@/app/components/CarouselTask";
 import CarouselHour from "@/app/components/CarouselHour";
 export default function Dashboard() {
-    const [date, setDate] = useState("")
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [mode, setMode] = useState("ongoing")
+    const [mode, setMode] = useState("")
     const [activeTask, setActiveTask] = useState<Task>();
-    useEffect(() => {
-        const date = new Date();
-        setDate(date.toDateString() +  ' - ' + date.toLocaleTimeString());
-    }, []);
 
     async function fetchData() {
         try {
@@ -60,13 +52,16 @@ export default function Dashboard() {
                 }
             }
             setMode("break")
+            localStorage.setItem("timerMode", "break")
         } else if (mode === "break") {
             setMode("ongoing")
+            localStorage.setItem("timerMode", "ongoing")
         }
     }
 
     useEffect(() => {
         fetchData()
+        setMode(localStorage.getItem("timerMode") as string || "ongoing")
     }, []);
 
     useEffect(() => {
@@ -77,7 +72,7 @@ export default function Dashboard() {
 
     return (
         <div className="flex justify-center items-center w-full h-screen">
-            <div className="grid grid-cols-4 w-3/4 max-h-[75vh] gap-x-7">
+            <div className="lg:grid lg:grid-cols-4 w-3/4 max-h-[75vh] gap-x-7">
                 <div className="col-span-2 w-full bg-secondary max-h-[75vh] min-h-[75vh] rounded-3xl flex justify-between flex-col">
                     <div className="flex justify-between py-5 px-7">
                         <h2 className="font-semibold text-lg">Tasks List <span className="font-normal text-sm ml-1">{tasks.length > 0 ? "(" + tasks.length + " Tasks)" : ""}</span></h2>
