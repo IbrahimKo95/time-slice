@@ -81,11 +81,14 @@ export default function Dashboard() {
                             <Button variant="ghost" className=""><EllipsisVertical size={25}/></Button>
                         </div>
                     </div>
-                    <div className="overflow-y-scroll flex-1">
+                    <div className={`${tasks.length < 1 ? "flex items-center justify-center" : "overflow-y-scroll flex-1 "}`}>
                         {tasks.length >= 1 ? tasks.map((task, index) => (
                             <TaskCard key={index} {...task}/>
                         )) : (
-                            <p className="text-white text-lg font-semibold">No tasks founds</p>
+                            <div className="text-center">
+                                <p className="text-white text-lg font-bold">No tasks founds</p>
+                                <p className="text-sm text-secondary-foreground">Add some tasks to the list.</p>
+                            </div>
                         )}
                     </div>
                     <div className="">
