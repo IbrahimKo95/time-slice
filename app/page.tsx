@@ -2,6 +2,7 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import React, {useState} from "react";
+import {redirect} from "next/navigation";
 
 export default function Home() {
     const [email, setEmail] = useState("")
@@ -21,6 +22,7 @@ export default function Home() {
             if(response.ok) {
                 const data = await response.json();
                 console.log(data)
+                redirect("/dashboard")
             }
         } catch (e) {
             console.error(e)

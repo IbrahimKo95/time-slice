@@ -95,14 +95,14 @@ export default function Dashboard() {
                         <NewTaskMenu refreshData={fetchData}/>
                     </div>
                 </div>
-                <div className="col-span-2 w-full max-h-[75vh] min-h-[75vh] rounded-xl grid grid-rows-3 gap-y-7">
-                    <div className="bg-secondary h-full rounded-3xl row-span-1 p-5">
-                        <div className="flex items-center justify-between h-full">
+                <div className="col-span-2 w-full max-h-[75vh] min-h-[75vh] rounded-xl flex flex-col gap-y-7">
+                    <div className="bg-secondary h-full rounded-3xl flex-1 p-5 mt-7 2xl:mt-0">
+                        <div className="h-full grid grid-cols-4 gap-x-7 items-center">
                             <CarouselHour/>
                             <CarouselTask/>
                         </div>
                     </div>
-                    <div className="bg-secondary h-full rounded-3xl row-span-2 p-5">
+                    <div className="bg-secondary h-full rounded-3xl flex-[2] p-5">
                         <Tabs value={mode} onValueChange={(value) => setMode(value)} className="w-full">
                             <TabsList className="w-full justify-between rounded-l-full rounded-r-full h-14 gap-x-10">
                                 <TabsTrigger disabled={mode !== "ongoing"} className="w-full h-full rounded-l-full rounded-r-full flex items-center gap-x-1" value="ongoing"><TimerIcon size={20}/> Ongoing</TabsTrigger>

@@ -101,14 +101,14 @@ export default function CarouselHour() {
     };
 
     return (
-        <Carousel setApi={setApi} className="w-full max-w-xs">
+        <Carousel setApi={setApi} className="col-span-2">
             <CarouselContent className="mb-2">
                 <CarouselItem>
                     <Card className="bg-secondary-foreground/20">
                         <CardContent className="p-4">
                             <div className="flex flex-col items-center">
-                                <p className="text-6xl">{timeWorked.today}</p>
-                                <p className="text-2xl mt-3">Today</p>
+                                <p className="text-3xl xl:text-6xl">{timeWorked.today}</p>
+                                <p className="text-lg 2xl:text-2xl mt-3 text-center">Today</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -117,8 +117,8 @@ export default function CarouselHour() {
                     <Card className="bg-secondary-foreground/20">
                         <CardContent className="p-4">
                             <div className="flex flex-col items-center">
-                                <p className="text-6xl">{timeWorked.week}</p>
-                                <p className="text-2xl mt-3">This Week</p>
+                                <p className="text-3xl xl:text-6xl">{timeWorked.week}</p>
+                                <p className="text-lg 2xl:text-2xl mt-3 text-center">This Week</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -127,8 +127,8 @@ export default function CarouselHour() {
                     <Card className="bg-secondary-foreground/20">
                         <CardContent className="p-4">
                             <div className="flex flex-col items-center">
-                                <p className="text-6xl">{timeWorked.month}</p>
-                                <p className="text-2xl mt-3">This Month</p>
+                                <p className="text-3xl xl:text-6xl">{timeWorked.month}</p>
+                                <p className="text-lg 2xl:text-2xl mt-3 text-center">This Month</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -137,8 +137,8 @@ export default function CarouselHour() {
                     <Card className="bg-secondary-foreground/20">
                         <CardContent className="p-4">
                             <div className="flex flex-col items-center">
-                                <p className="text-6xl">{timeWorked.year}</p>
-                                <p className="text-2xl mt-3">This Year</p>
+                                <p className="text-3xl xl:text-6xl">{timeWorked.year}</p>
+                                <p className="text-lg 2xl:text-2xl mt-3 text-center">This Year</p>
                             </div>
                         </CardContent>
                     </Card>
