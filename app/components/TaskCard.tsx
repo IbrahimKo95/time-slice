@@ -1,4 +1,4 @@
-import {BookIcon, CheckIcon, CircleCheckBigIcon, EllipsisVertical, EyeIcon, PencilIcon, Trash2Icon} from "lucide-react";
+import {CheckIcon, CircleCheckBigIcon, EllipsisVertical, EyeIcon, PencilIcon, Trash2Icon} from "lucide-react";
 import {Task} from "@/types/TaskTypes";
 import Learn from "@/app/icons/Learn";
 import Work from "@/app/icons/Work";

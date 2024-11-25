@@ -1,6 +1,5 @@
 "use client"
-import {Coffee, EllipsisVertical, SearchIcon, TimerIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import {Coffee,TimerIcon} from "lucide-react";
 import TaskCard from "@/app/components/TaskCard";
 import {useEffect, useState} from "react";
 import {Task} from "@/types/TaskTypes";
@@ -76,12 +75,8 @@ export default function Dashboard() {
                 <div className="col-span-2 w-full bg-secondary max-h-[75vh] min-h-[75vh] rounded-3xl flex justify-between flex-col">
                     <div className="flex justify-between py-5 px-7">
                         <h2 className="font-semibold text-lg">Tasks List <span className="font-normal text-sm ml-1">{tasks.length > 0 ? "(" + tasks.length + " Tasks)" : ""}</span></h2>
-                        <div className="flex">
-                            <Button variant="ghost" className=""><SearchIcon size={25}/></Button>
-                            <Button variant="ghost" className=""><EllipsisVertical size={25}/></Button>
-                        </div>
                     </div>
-                    <div className={`${tasks.length < 1 ? "flex items-center justify-center" : "overflow-y-scroll flex-1 "}`}>
+                    <div className={`${tasks.length < 1 ? "flex items-center justify-center" : "overflow-y-auto flex-1 "}`}>
                         {tasks.length >= 1 ? tasks.map((task, index) => (
                             <TaskCard key={index} task={task} fetchData={fetchData}/>
                         )) : (
@@ -111,14 +106,14 @@ export default function Dashboard() {
                             <TabsContent value="ongoing">
                                 <div className="mt-10">
                                     {mode === "ongoing" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 5 * 1000)} setMode={() => timerFinished()} activeTask={activeTask} index={tasks.indexOf(activeTask as Task)+1}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 25 * 60 * 1000)} setMode={() => timerFinished()} activeTask={activeTask} index={tasks.indexOf(activeTask as Task)+1}/>
                                     )}
                                 </div>
                             </TabsContent>
                             <TabsContent value="break">
                                 <div className="mt-10">
                                     {mode === "break" && (
-                                        <Timer expiryTimestamp={new Date(Date.now() + 5 * 1000)} setMode={() => timerFinished()} activeTask={undefined} index={tasks.indexOf(activeTask as Task)}/>
+                                        <Timer expiryTimestamp={new Date(Date.now() + 5 * 60 * 1000)} setMode={() => timerFinished()} activeTask={undefined} index={tasks.indexOf(activeTask as Task)}/>
                                     )}
                                 </div>
                             </TabsContent>
