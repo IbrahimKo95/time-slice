@@ -83,7 +83,7 @@ export default function Dashboard() {
                     </div>
                     <div className={`${tasks.length < 1 ? "flex items-center justify-center" : "overflow-y-scroll flex-1 "}`}>
                         {tasks.length >= 1 ? tasks.map((task, index) => (
-                            <TaskCard key={index} {...task}/>
+                            <TaskCard key={index} task={task} fetchData={fetchData}/>
                         )) : (
                             <div className="text-center">
                                 <p className="text-white text-lg font-bold">No tasks founds</p>
@@ -96,7 +96,7 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="col-span-2 w-full max-h-[75vh] min-h-[75vh] rounded-xl flex flex-col gap-y-7">
-                    <div className="bg-secondary h-full rounded-3xl flex-1 p-5 mt-7 2xl:mt-0">
+                    <div className="bg-secondary h-full rounded-3xl flex-1 p-5 mt-7 lg:mt-0">
                         <div className="h-full grid grid-cols-4 gap-x-7 items-center">
                             <CarouselHour/>
                             <CarouselTask/>
