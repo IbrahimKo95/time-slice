@@ -20,7 +20,6 @@ export default function Timer({ expiryTimestamp, setMode , activeTask, index }: 
         isRunning,
         start,
         pause,
-        resume,
         restart,
     } = useTimer({
         expiryTimestamp,
