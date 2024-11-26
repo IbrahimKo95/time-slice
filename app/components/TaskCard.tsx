@@ -20,12 +20,16 @@ import {
     DialogHeader,
     DialogTitle
 } from "@/components/ui/dialog";
+import {Input} from "@/components/ui/input";
+import {Textarea} from "@/components/ui/textarea";
 
 
 export default function TaskCard(props : {task: Task, fetchData: () => void}) {
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
+    const [title, setTitle] = useState(props.task.title)
+    const [description, setDescription] = useState(props.task.description)
 
     async function deleteTask() {
         const body = {
@@ -41,6 +45,23 @@ export default function TaskCard(props : {task: Task, fetchData: () => void}) {
         if(response.ok) {
             setIsDeleteDialogOpen(false)
             props.fetchData()
+        }
+    }
+
+    async function editTask() {
+        const editedTask = {...props.task, title, description}
+        const response = await fetch('/api/task', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedTask)
+        });
+        if(response.ok) {
+            setIsEditDialogOpen(false)
+            props.fetchData()
+        } else {
+            console.log("Erreur lors de la modification de la tâche")
         }
     }
     return (
@@ -86,13 +107,17 @@ export default function TaskCard(props : {task: Task, fetchData: () => void}) {
                 </DropdownMenu>
             </div>
             <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-                <DialogContent>
+                <DialogContent className="!rounded-3xl">
                     <DialogHeader>
-                        <DialogTitle>My Dialog</DialogTitle>
+                        <DialogTitle>Edit Task</DialogTitle>
                     </DialogHeader>
-                    <p>This is a dialog opened from the dropdown menu.</p>
+                    <label>Title</label>
+                    <Input onChange={(e) => setTitle(e.target.value)} defaultValue={props.task.title}></Input>
+                    <label>Description</label>
+                    <Textarea onChange={(e) => setDescription(e.target.value)} rows={5} defaultValue={props.task.description}></Textarea>
                     <DialogFooter>
-                        <Button onClick={() => setIsEditDialogOpen(false)}>Close</Button>
+                        <Button className="rounded-l-full rounded-r-full" variant="secondary" onClick={() => setIsEditDialogOpen(false)}>Cancel</Button>
+                        <Button className="rounded-l-full rounded-r-full px-7" variant='default' onClick={() => editTask()}>Save</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
