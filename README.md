@@ -10,8 +10,6 @@
 - **Pomodoro avancé** : Gérez chaque session de travail en cycles Pomodoro.  
 - **Suivi détaillé** : Consultez l'historique du nombre de tâches réalisées et des heures travaillées par périodes.  
 
----
-
 ## ⚙️ Technologies
 
 - **Next.js** - ⚛️ Framework React pour le rendu côté serveur et le rendu statique.  
@@ -19,7 +17,6 @@
 - **TailwindCSS** - 🎨 Framework CSS utilitaire pour une mise en page élégante et réactive.  
 - **ShadCN** - 🧩 Collection de composants UI construits avec TailwindCSS pour une interface cohérente et esthétique. 
 
----
 
 ## 💻 Installation 
 
