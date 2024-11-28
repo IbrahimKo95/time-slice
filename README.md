@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⏳ Time-Slice
 
-## Getting Started
+**Time-Slice** est une application Pomodoro avancée permettant de mieux gérer votre temps et vos tâches. Elle offre des fonctionnalités de personnalisation pour chaque tâche et un suivi détaillé de votre productivité.
 
-First, run the development server:
+![Apercu](https://github.com/IbrahimKo95/time-slice/blob/master/public/Capture%20d%E2%80%99%C3%A9cran_28-11-2024_22029_timeslice.vercel.app.jpeg?raw=true)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Fonctionnalités 🚀
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Création de tâches** : Définissez des tâches avec un nombre précis de sessions nécessaires pour les accomplir.  
+- **Pomodoro avancé** : Gérez chaque session de travail en cycles Pomodoro.  
+- **Suivi détaillé** : Consultez l'historique du nombre de tâches réalisées et des heures travaillées par périodes.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Technologies
 
-## Learn More
+- **Next.js** - ⚛️ Framework React pour le rendu côté serveur et le rendu statique.  
+- **Prisma** - 🗄️ ORM moderne pour interagir avec une base de données relationnelle de manière efficace.  
+- **TailwindCSS** - 🎨 Framework CSS utilitaire pour une mise en page élégante et réactive.  
+- **ShadCN** - 🧩 Collection de composants UI construits avec TailwindCSS pour une interface cohérente et esthétique. 
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Installation 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clonez ce dépôt** :
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/IbrahimKo95/time-slice.git
+   cd time-slice
+   ```
+   
+2. **Installez les dépendances** :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
+   
+3. **Démarrez le serveur de développement** :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run vercel-deploy
+   ```
+   
+4. **Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur**.
