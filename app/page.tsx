@@ -2,11 +2,12 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import React, {useState} from "react";
-import {redirect} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const router = useRouter()
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if(email === "" || password === "") {
@@ -22,7 +23,7 @@ export default function Home() {
             if(response.ok) {
                 const data = await response.json();
                 console.log(data)
-                redirect("/dashboard")
+                router.push('/dashboard')
             }
         } catch (e) {
             console.error(e)
